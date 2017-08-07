@@ -1,0 +1,39 @@
+{
+  "name": "webpack3-dev-boilerplate",
+  "version": "1.0.0",
+  "description": "webpack3-dev-boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --progress --watch",
+    "start": "webpack-dev-server --open",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shenbao shenbaoone@gmail.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShenBao/webpack3-dev-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShenBao/webpack3-dev-boilerplate/issues"
+  },
+  "homepage": "https://github.com/ShenBao/webpack3-dev-boilerplate#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.4",
+    "csv-loader": "^2.1.1",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "inline-source-map": "^0.6.2",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1",
+    "xml-loader": "^1.2.1"
+  }
+}
