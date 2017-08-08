@@ -47,6 +47,8 @@ webpack-dev-server
 阔以开启 HMR
 
 
+extract-text-webpack-plugin
+
 
 
 ```

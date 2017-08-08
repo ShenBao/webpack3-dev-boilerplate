@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = {
+const baseConfig = {
   entry: {
     app: './src/index.js',
     print: './src/print.js'
@@ -93,3 +93,6 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
   ],
 };
+
+
+module.exports = baseConfig;
