@@ -21,7 +21,14 @@ const prodConfig = {
     devtool: 'inline-source-map',
    
     plugins: [
-
+        new webpack.NoErrorsPlugin(),
+        // new webpack.BannerPlugin('author : ShenBao; mail: shenbaoone@gmail.com'),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //     warnings: false,
+        //     },
+        //     comments: false
+        // }),
     ],
 };
 
