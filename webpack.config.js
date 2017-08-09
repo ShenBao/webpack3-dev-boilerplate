@@ -1,18 +1,25 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const commonPath = require('./common.path.js');
-const dependencies = require('../package.json').dependencies;
-
-const baseConfig = {
+module.exports = {
   entry: {
-    index: path.join(commonPath.srcPath, 'index.js'),
-    vendor: Object.keys(dependencies)
+    app: './src/index.js',
+    print: './src/print.js'
   },
   output: {
     filename: '[name].bundle.js',
-    path: commonPath.public
+    path: path.resolve(__dirname, 'dist')
+  },
+  
+  devtool: 'inline-source-map',
+  devServer: {
+    host: 'localhost',
+    port: 80,
+    contentBase: './dist',
+    // 启用 HMR 需要 new webpack.HotModuleReplacementPlugin()
+    hot: true 
   },
 
   module: {
@@ -69,26 +76,20 @@ const baseConfig = {
         use: [
             'xml-loader'
         ]
-      },
-      {
-        test: /\.js[x]?$/,
-        use: [
-          'react-hot-loader',
-          'babel-loader'
-        ],
-        exclude: path.join(commonPath.rootPath, 'node_modules')
-      },
+      }
     ]
   },
-  resolve:{
-    extensions:['.js','.json']
-  },
+
   plugins: [
+    // 清楚文件夹
+    // new CleanWebpackPlugin(['dist']),
     // 生成html
     new HtmlWebpackPlugin({
       title: 'HtmlWebpackPlugin生成的页面'
     }),
+    // 开启HMR
+    new webpack.HotModuleReplacementPlugin(),
+    // 压缩代码
+    // new webpack.optimize.UglifyJsPlugin(),
   ],
 };
-
-module.exports = baseConfig;

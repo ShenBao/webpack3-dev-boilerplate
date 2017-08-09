@@ -46,8 +46,16 @@ inline-source-map
 webpack-dev-server
 阔以开启 HMR
 
-
+打包css
 extract-text-webpack-plugin
+
+js[x]
+react-hot-loader
+babelt-loader
+
+合并配置参数
+webpack-merge
+
 
 
 
