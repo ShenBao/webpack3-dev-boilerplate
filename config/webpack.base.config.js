@@ -6,13 +6,14 @@ const commonPath = require('./common.path.js');
 const dependencies = require('../package.json').dependencies;
 
 const baseConfig = {
-  entry: {
-    index: path.join(commonPath.srcPath, 'index.js'),
-    vendor: Object.keys(dependencies)
-  },
+  // entry: {
+  //   index: path.join(commonPath.srcPath, 'index.js'),
+  //   vendor: Object.keys(dependencies)
+  // },
   output: {
-    filename: '[name].bundle.js',
-    path: commonPath.public
+    // filename: '[name].bundle.js',
+    path: commonPath.public,
+    // publicPath: '../static/'
   },
 
   module: {
@@ -81,12 +82,13 @@ const baseConfig = {
     ]
   },
   resolve:{
-    extensions:['.js','.json']
+    extensions: ['.js', '.jsx', '.json'],
   },
   plugins: [
     // 生成html
     new HtmlWebpackPlugin({
-      title: 'HtmlWebpackPlugin生成的页面'
+      title: 'HtmlWebpackPlugin生成的页面',
+      template: commonPath.indexHTML
     }),
   ],
 };
