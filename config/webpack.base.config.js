@@ -53,7 +53,7 @@ const baseConfig = {
       },
       // 处理img
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/,
         use: [
           'file-loader'
         ]
@@ -97,6 +97,27 @@ const baseConfig = {
       title: 'HtmlWebpackPlugin生成的页面',
       template: commonPath.indexHTML
     }),
+
+    // new HtmlWebpackPlugin({
+    //   template: paths.client('index.html'),
+    //   hash: false,
+    //   favicon: paths.client('static/favicon.ico'),
+    //   filename: 'index.html',
+    //   inject: 'body',
+    //   minify: {
+    //     collapseWhitespace: true
+    //   }
+    // })
+
+    // 使用文件名替换数字作为模块ID
+    // new webpack.NamedModulesPlugin(),
+    // 使用 hash 作模块 ID，文件名作ID太长了，文件大小剧增
+    // new HashedModuleIdsPlugin(),
+    // 根据文件内容生成 hash
+    // new WebpackMd5Hash()
+
+    // 去掉重复模块
+    // new webpack.optimize.DedupePlugin()
   ],
 };
 

@@ -11,7 +11,8 @@ webpack3 中文文档 https://doc.webpack-china.org
 http://blog.csdn.net/github_26672553/article/details/52280655
 https://segmentfault.com/a/1190000008260180
 
-
+http://blog.csdn.net/zshake/article/details/72453045
+http://www.cnblogs.com/sloong/p/5689162.html
 
 
 https://github.com/webpack-contrib/extract-text-webpack-plugin
@@ -25,11 +26,11 @@ https://github.com/qianjiahao/webpack-babel-react-development-tools
 
 
 
-
-
-
-
-
+https://github.com/bodyno/react-starter-kit
+https://github.com/duxianwei520/react
+https://github.com/react-redux-antd-es6/react
+https://github.com/chentsulin/electron-react-boilerplate
+https://github.com/xiaoyann/webpack-react-redux-es6-boilerplate
 
 
 
