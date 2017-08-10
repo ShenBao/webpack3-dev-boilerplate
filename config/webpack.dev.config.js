@@ -29,7 +29,7 @@ const devConfig = {
     devServer: {
         // contentBase: commonPath.public,
         host: 'localhost',
-        port: 80,
+        port: 3000,
         // 启用 HMR 需要 new webpack.HotModuleReplacementPlugin()
         // hot: true,
         hotOnly: true, //HMR
@@ -50,7 +50,7 @@ const devConfig = {
         }),
         // 开启HMR
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
+        // new webpack.NoErrorsPlugin(),
         // 提供公共代码
         new webpack.optimize.CommonsChunkPlugin('common.js'),// 默认会把所有入口节点的公共代码提取出来,生成一个common.js
     ],
