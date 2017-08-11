@@ -15,10 +15,10 @@ const baseConfig = require('./webpack.base.config.js');
 
 const prodConfig = {
 
-    entry: {
-        index: path.join(commonPath.srcPath, 'index.js'),
-        vendor: Object.keys(dependencies)
-    },
+    // entry: {
+    //     index: path.join(commonPath.srcPath, 'index.js'),
+    //     vendor: Object.keys(dependencies)
+    // },
 
     output: {
         filename: '[name].[chunkhash:6].js',
