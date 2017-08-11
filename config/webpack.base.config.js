@@ -12,6 +12,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const commonPath = require('./common.path.js');
 const dependencies = require('../package.json').dependencies;
 
+
 const baseConfig = {
   // entry: {
   //   index: path.join(commonPath.srcPath, 'index.js'),
