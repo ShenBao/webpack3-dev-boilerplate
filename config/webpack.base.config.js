@@ -15,10 +15,10 @@ const dependencies = require('../package.json').dependencies;
 
 
 const baseConfig = {
-  entry: {
-    index: path.join(commonPath.srcPath, 'index.js'),
-    vendor: Object.keys(dependencies)
-  },
+  // entry: {
+  //   index: path.join(commonPath.srcPath, 'index.js'),
+  //   vendor: Object.keys(dependencies)
+  // },
   output: {
     // filename: '[name].bundle.js',
     path: commonPath.public,

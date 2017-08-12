@@ -7,12 +7,16 @@ webpack3 中文文档 https://doc.webpack-china.org
 
 [怎样令webpack的构建加快十倍、DllPlugin的用法](http://blog.csdn.net/technofiend/article/details/52850596)
 [详解webpack-dev-server的使用](https://segmentfault.com/a/1190000006964335)
+[Loaders](https://doc.webpack-china.org/loaders/)
 
 http://blog.csdn.net/github_26672553/article/details/52280655
 https://segmentfault.com/a/1190000008260180
 
 http://blog.csdn.net/zshake/article/details/72453045
 http://www.cnblogs.com/sloong/p/5689162.html
+https://segmentfault.com/q/1010000008519323
+
+
 
 
 https://github.com/webpack-contrib/extract-text-webpack-plugin

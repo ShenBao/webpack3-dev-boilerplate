@@ -72,11 +72,11 @@ const devConfig = {
         // new webpack.optimize.OccurenceOrderPlugin(),
         // new webpack.optimize.CommonsChunkPlugin('common.js'),// 默认会把所有入口节点的公共代码提取出来,生成一个common.js
 
-        new webpack.NamedModulesPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            debug: true
-        }),
+        // new webpack.NamedModulesPlugin(),
+        // new webpack.NoEmitOnErrorsPlugin(),
+        // new webpack.LoaderOptionsPlugin({
+        //     debug: true
+        // }),
         // new webpack.NoErrorsPlugin(),
 
         // new OpenBrowserWebpackPlugin({
