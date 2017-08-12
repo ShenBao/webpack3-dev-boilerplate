@@ -12,6 +12,17 @@ webpack3 中文文档 https://doc.webpack-china.org
 http://blog.csdn.net/github_26672553/article/details/52280655
 https://segmentfault.com/a/1190000008260180
 
+
+# hot module replacement
+https://sanwen.net/a/wflzwqo.html
+https://github.com/ahfarmer/webpack-hmr-starter-middleware
+https://segmentfault.com/a/1190000007373555
+https://github.com/lanjingling0510/blog
+https://segmentfault.com/a/1190000003872635
+
+
+
+
 http://blog.csdn.net/zshake/article/details/72453045
 http://www.cnblogs.com/sloong/p/5689162.html
 https://segmentfault.com/q/1010000008519323

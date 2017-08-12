@@ -38,8 +38,8 @@ const devConfig = {
         host: 'localhost',
         port: 3000,
         // 启用 HMR 需要 new webpack.HotModuleReplacementPlugin()
-        // hot: true,
-        hotOnly: true, //HMR
+        hot: true,
+        // hotOnly: true, //HMR
         // historyApiFallback: true,
         // publicPath: commonPath.public,
         // headers: { "X-Custom-Header": "yes" },
