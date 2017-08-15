@@ -9,6 +9,7 @@ webpack3 中文文档 https://doc.webpack-china.org
 [详解webpack-dev-server的使用](https://segmentfault.com/a/1190000006964335)
 [Loaders](https://doc.webpack-china.org/loaders/)
 
+https://segmentfault.com/a/1190000008531848
 http://blog.csdn.net/github_26672553/article/details/52280655
 https://segmentfault.com/a/1190000008260180
 
