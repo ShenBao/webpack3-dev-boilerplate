@@ -12,7 +12,7 @@ webpack3 中文文档 https://doc.webpack-china.org
 https://segmentfault.com/a/1190000008531848
 http://blog.csdn.net/github_26672553/article/details/52280655
 https://segmentfault.com/a/1190000008260180
-
+https://segmentfault.com/a/1190000008151173
 
 # hot module replacement
 https://sanwen.net/a/wflzwqo.html
