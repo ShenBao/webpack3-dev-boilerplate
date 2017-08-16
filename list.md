@@ -14,6 +14,9 @@ http://blog.csdn.net/github_26672553/article/details/52280655
 https://segmentfault.com/a/1190000008260180
 https://segmentfault.com/a/1190000008151173
 
+https://segmentfault.com/a/1190000005106383
+
+
 # hot module replacement
 https://sanwen.net/a/wflzwqo.html
 https://github.com/ahfarmer/webpack-hmr-starter-middleware
