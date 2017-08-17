@@ -46,17 +46,60 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/,
                 use: [
-                    'file-loader'
-                ]
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[hash:10].[ext]',
+                            // [ext] 资源扩展名
+                            // [name] 资源的基本名称
+                            // [path] 资源相对于 context 查询参数或者配置的路径
+                            // [hash] 内容的哈希值，默认为十六进制编码的 md5
+                            // [<hashType>:hash:<digestType>:<length>] 可选配置
+                            // 其他的 hashType, 即 sha1, md5, sha256, sha512
+                            // 其他的 digestType, 即 hex, base26, base32, base36, base49, base52, base58, base62, base64
+                            // length 字符的长度
+                            limit: 10240,
+                            // context: '',
+                            // publicPath: 'assets',
+                            // outputPath: 'images',
+                            // useRelativePath: false, 
+                            // emitFile: true,
+                        }
+                    }
+                ],
             },
             // 字体
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
-                    'file-loader'
+                     {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[hash:10].[ext]',
+                            limit: 10240,
+                        }
+                    }
                 ]
             },
 
+            {
+                test: /\.txt$/,
+                use: 'raw-loader'
+            },
+
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            // minimize: true,
+                            // removeComments: false,
+                            // collapseWhitespace: false
+                        }
+                    }
+                ]
+            }
         ]
     },
 

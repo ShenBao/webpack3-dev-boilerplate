@@ -6,11 +6,13 @@ const path = require('path');
 const commonConfig = require('./common.config.js');
 const otherConfig = require('./other.config.js');
 const baseConfig = require('./webpack.base.config.js');
+const styleConfig = require('./style.config.js');
 
 const dependencies = require('../package.json').dependencies;
 const commonPath = commonConfig.commonPath;
 const entryFilesFn = otherConfig.entryFilesFn;
 const htmlPluginsFn = otherConfig.htmlPluginsFn;
+const devStyle = styleConfig.devStyle;
 
 const devConfig = {
     entry: Object.assign(
@@ -27,38 +29,17 @@ const devConfig = {
     devServer: {
         contentBase: commonPath.htmlPath,//本地服务器所加载的页面所在的目录
         host: 'localhost',
-        port: 9000,
+        port: 8080,
         hot: true,
         open: true,
+        compress: false,
+        historyApiFallback: true,
+        inline: true,
+        stats: { colors: true }
     },
     module: {
-        rules: [
-            // 处理css
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
-            // 处理less
-            {
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'less-loader'
-                ]
-            },
-            // 处理sass
-            {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            },
+        rules: devStyle.concat([
+            // 处理js
             {
                 test: /\.js[x]?$/,
                 use: [
@@ -67,19 +48,33 @@ const devConfig = {
                     },
                     {
                         loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true
+                        }
                     },
-                    // {
-                    //     loader: 'cache-loader',
-                    //     options: {
-                    //         cacheDirectory: path.resolve('.cache')
-                    //     }
-                    // },
+                    {
+                        loader: 'cache-loader',
+                        options: {
+                            cacheDirectory: path.resolve('.cache')
+                        }
+                    },
                 ],
                 exclude: path.join(commonPath.rootPath, 'node_modules')
             },
-        ]
+        ])
     },
-    plugins: [
+    plugins: htmlPluginsFn().concat([
+
+        // 定义环境变量为开发环境
+        new webpack.DefinePlugin(
+            {
+                'process.env':{
+                    'NODE_ENV': JSON.stringify('development')
+                },
+                IS_DEVELOPMETN: false,
+            }
+        ),
+
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require('../dll/vendor-manifest.json'),
@@ -96,7 +91,7 @@ const devConfig = {
         // new webpack.LoaderOptionsPlugin({
         //     debug: true
         // }),
-        // new webpack.NoErrorsPlugin(),
+        new webpack.NoErrorsPlugin(),
 
         // new OpenBrowserWebpackPlugin({
         //     url: `http://localhost`,
@@ -104,9 +99,7 @@ const devConfig = {
         // 分析代码
         // new BundleAnalyzerPlugin({ analyzerPort: 8188 }),
 
-
-    ].concat(htmlPluginsFn()),
-
+    ]),
 };
 
 
