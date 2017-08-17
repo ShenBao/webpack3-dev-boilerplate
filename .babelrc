@@ -1,9 +1,13 @@
 {
-  "presets": ["es2015", "stage-0", "react"],
-  "plugins": ["transform-runtime", "transform-decorators-legacy"],
-  "env": {
-    "production": {
-      "presets": ["react-optimize"]
+    "presets": ["es2015", "stage-0", "react"],
+    "plugins": [
+        "transform-runtime",
+        "transform-decorators-legacy"
+    ],
+    "env": {
+        "production": {
+            "presets": ["react-optimize"]
+        }
     }
-  }
+    // "cacheDirectory": true //打包性能提升很明显
 }

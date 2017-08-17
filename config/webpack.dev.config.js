@@ -1,77 +1,96 @@
-/**
- * @Author: ShenBao shenbaoone@gmail.com
- * @Date: 2017-08-07 20:10:37
- * @Last Modified time: 2017-08-08 19:24:50
- */
 
-const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const OpenBrowserWebpackPlugin = require('open-browser-webpack-plugin')
+const path = require('path');
 
-const dependencies = require('../package.json').dependencies;
-
-const commonPath = require('./common.path.js');
+const commonConfig = require('./common.config.js');
+const otherConfig = require('./other.config.js');
 const baseConfig = require('./webpack.base.config.js');
 
+const dependencies = require('../package.json').dependencies;
+const commonPath = commonConfig.commonPath;
+const entryFilesFn = otherConfig.entryFilesFn;
+const htmlPluginsFn = otherConfig.htmlPluginsFn;
+
 const devConfig = {
-
-    entry: {
-        index: path.join(commonPath.srcPath, 'index.js'),
-        // index:  [
-        //     'eventsource-polyfill',
-        //     'webpack-hot-middleware/client?reload=true',
-        //     'webpack/hot/only-dev-server',
-        //     path.join(commonPath.srcPath, "index.js")
-        // ],
-        vendor: Object.keys(dependencies)
-    },
-
+    entry: Object.assign(
+        {
+            vendor: Object.keys(dependencies),
+        },
+        entryFilesFn()
+    ),
     output: {
         filename: '[name].js',
         chunkFilename: '[id].js',
     },
-    // devtool: 'inline-source-map',
     devtool: 'source-map',
     devServer: {
-        // contentBase: commonPath.public,
+        contentBase: commonPath.htmlPath,//本地服务器所加载的页面所在的目录
         host: 'localhost',
-        port: 3000,
-        // 启用 HMR 需要 new webpack.HotModuleReplacementPlugin()
+        port: 9000,
         hot: true,
-        // hotOnly: true, //HMR
-        // historyApiFallback: true,
-        // publicPath: commonPath.public,
-        // headers: { "X-Custom-Header": "yes" },
-        // stats: { colors: true }
-        // quiet: false,
-        // progress: true,//报错无法识别，删除后也能正常刷新
-        // inline: true,
-        // clientLogLevel: "info",
-        // lazy: false,
-        // stats: 'errors-only',
-        // compress: true,
-        // noInfo: true,
+        open: true,
+    },
+    module: {
+        rules: [
+            // 处理css
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            // 处理less
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader'
+                ]
+            },
+            // 处理sass
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.js[x]?$/,
+                use: [
+                    {
+                        loader: 'react-hot-loader',
+                    },
+                    {
+                        loader: 'babel-loader',
+                    },
+                    // {
+                    //     loader: 'cache-loader',
+                    //     options: {
+                    //         cacheDirectory: path.resolve('.cache')
+                    //     }
+                    // },
+                ],
+                exclude: path.join(commonPath.rootPath, 'node_modules')
+            },
+        ]
     },
     plugins: [
-         // 定义环境变量为开发环境
-        // new webpack.DefinePlugin({
-        // 'process.env.NODE_ENV': JSON.stringify('development'),
-        // IS_DEVELOPMETN: true,
-        // }),
-
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require('../public/vendor-manifest.json'),
+            manifest: require('../dll/vendor-manifest.json'),
             name:'react_library'
         }),
-        // 开启HMR
+
         new webpack.HotModuleReplacementPlugin(),
 
         // 根据入口文件，提取重复引用的公共代码类库，打包到单独文件中
         // new webpack.optimize.OccurenceOrderPlugin(),
         // new webpack.optimize.CommonsChunkPlugin('common.js'),// 默认会把所有入口节点的公共代码提取出来,生成一个common.js
-
         // new webpack.NamedModulesPlugin(),
         // new webpack.NoEmitOnErrorsPlugin(),
         // new webpack.LoaderOptionsPlugin({
@@ -84,11 +103,11 @@ const devConfig = {
         // }),
         // 分析代码
         // new BundleAnalyzerPlugin({ analyzerPort: 8188 }),
-    ],
+
+
+    ].concat(htmlPluginsFn()),
+
 };
 
 
 module.exports = webpackMerge(baseConfig, devConfig);
-
-
-
