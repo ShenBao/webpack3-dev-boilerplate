@@ -7,6 +7,7 @@ const commonPath = commonConfig.commonPath;
 
 
 module.exports = {
+    context: commonPath.rootPath,
     output: {
         path: commonPath.publicPath
     },

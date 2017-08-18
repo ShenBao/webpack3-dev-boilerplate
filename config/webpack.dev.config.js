@@ -35,8 +35,23 @@ const devConfig = {
         compress: false,
         historyApiFallback: true,
         inline: true,
+        overlay: true,
         stats: { colors: true },
         // stats: 'errors-only',//减少dev开发模式减少日志信息输出的时间
+        proxy: {
+			"/api": {
+				target: "http://test.com/",
+				changeOrigin: true,
+				pathRewrite: {
+					"^/api": ""
+				},
+				bypass: function(req) {
+					if(req.url === "/api/nope") {
+						return "/test.html";
+					}
+				}
+			}
+		}
     },
     module: {
         rules: devStyle.concat([
@@ -87,7 +102,7 @@ const devConfig = {
         // 根据入口文件，提取重复引用的公共代码类库，打包到单独文件中
         // new webpack.optimize.OccurenceOrderPlugin(),
         // new webpack.optimize.CommonsChunkPlugin('common.js'),// 默认会把所有入口节点的公共代码提取出来,生成一个common.js
-        // new webpack.NamedModulesPlugin(),
+        new webpack.NamedModulesPlugin(),
         // new webpack.NoEmitOnErrorsPlugin(),
         // new webpack.LoaderOptionsPlugin({
         //     debug: true
