@@ -5,12 +5,20 @@ const CleanCSSPlugin = require("less-plugin-clean-css");
 const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-        autoprefixer : {
-        add      : true,
-        remove   : true,
-        browsers : ['last 2 versions']
-        }
-    }
+        "sourceMap":true,
+        // "plugins":[
+        //         {
+        //             "options":{
+        //                 "advanced":true
+        //             }
+        //         }
+        // ],
+        // autoprefixer : {
+        // add      : true,
+        // remove   : true,
+        // browsers : ['last 2 versions']
+        // }
+    },
 };
 
 const devStyle = [

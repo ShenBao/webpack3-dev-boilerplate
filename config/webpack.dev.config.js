@@ -91,7 +91,10 @@ const devConfig = {
         // new webpack.LoaderOptionsPlugin({
         //     debug: true
         // }),
-        new webpack.NoErrorsPlugin(),
+
+        
+        // new webpack.NoErrorsPlugin(), 废弃，用 NoEmitOnErrorsPlugin 代替
+        new webpack.NoEmitOnErrorsPlugin(),
 
         // new OpenBrowserWebpackPlugin({
         //     url: `http://localhost`,
