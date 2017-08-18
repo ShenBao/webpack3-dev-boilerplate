@@ -93,13 +93,29 @@ const prodConfig = {
             context: commonPath.rootPath,
             from: 'static/*',
             ignore: ['*.md']
+            // from    定义要拷贝的源目录           from: __dirname + ‘/src/public’
+            // to      定义要拷贝到的目标目录     from: __dirname + ‘/dist’
+            // toType  file 或者 dir         可选，默认是文件
+            // force   强制覆盖先前的插件           可选 默认false
+            // context                         可选 默认base context可用specific context
+            // flatten 只拷贝文件不管文件夹      默认是false
+            // ignore  忽略拷贝指定的文件           可以用模糊匹配
             }
         ]),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
-            }
+                warnings: true,
+                drop_console: true,
+                pure_funcs: ['console.log'],
+            },
+            mangle: {
+                except: ['$super', '$', 'exports', 'require'],
+            },
+            output: {
+                comments: false,
+            },
+            sourceMap: false,
         }),
         // new webpack.optimize.OccurenceOrderPlugin(),
         // 公共代码分离打包

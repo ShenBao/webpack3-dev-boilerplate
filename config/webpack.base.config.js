@@ -11,12 +11,20 @@ module.exports = {
         path: commonPath.publicPath
     },
     resolve:{
+        // root: [path.resolve('../src')],
         extensions: [
             '.js',
             '.jsx',
             '.json',
+            '.scss',
+            '.png',
+            '.jpg'
         ],
+        alias: {
+            tmpl: '/tmpl',
+        }
     },
+    cache: true,
     module: {
         rules: [
             // 数据处理
@@ -81,7 +89,18 @@ module.exports = {
                     }
                 ]
             },
-
+            {
+                test: /\.(wav|mp3)$/,
+                use: [
+                     {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[hash:10].[ext]',
+                            limit: 10240,
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.txt$/,
                 use: 'raw-loader'

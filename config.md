@@ -56,3 +56,48 @@ webpack-merge
 
 
 ```
+
+使用webpack-uglify-parallel代替webpack自带的UglifyJsPlugin（多核压缩代码，提升n（发布机的核数 － 1）压缩速度）-重点推荐
+```
+webpackConfig.plugins.some(function(plugin, i) {
+        if (plugin instanceof webpack.optimize.UglifyJsPlugin) {
+            webpackConfig.plugins.splice(i, 1);
+            return true;
+        }
+    });
+    
+    const os = require('os');
+
+    const options = {
+        workers: os.cpus().length,
+        compress: {
+            warnings: true,
+            drop_console: true,
+            pure_funcs: ['console.log'],
+        },
+        //mangle: {
+        //    except: ['$super', '$', 'exports', 'require']
+        //},
+        mangle: false,
+        output: {
+            comments: false,
+            ascii_only: false,
+        },
+        sourceMap: false,
+    };
+
+    const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
+    webpackConfig.plugins.push(
+        new UglifyJsParallelPlugin(options)
+    );
+```
+
+
+
+
+
+
+
+
+
+

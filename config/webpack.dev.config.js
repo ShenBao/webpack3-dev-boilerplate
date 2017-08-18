@@ -35,7 +35,8 @@ const devConfig = {
         compress: false,
         historyApiFallback: true,
         inline: true,
-        stats: { colors: true }
+        stats: { colors: true },
+        // stats: 'errors-only',//减少dev开发模式减少日志信息输出的时间
     },
     module: {
         rules: devStyle.concat([
