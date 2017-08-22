@@ -76,9 +76,23 @@ const devStyle = [
             {
                 loader: "css-loader",       // 将 CSS 转化成 CommonJS 模块
                 options: {
-                    sourceMap: true,        //开发环境
-                    minimize: false,
-                }
+                    sourceMap: true,
+                    minimize: {
+                        autoprefixer: {
+                            add: true,
+                            remove: true,
+                            browsers: ['last 2 versions'],
+                        },
+                        discardComments: {
+                            removeAll : true,
+                        },
+                        discardUnused: false,
+                        mergeIdents: false,
+                        reduceIdents: false,
+                        safe: true,
+                        sourcemap: true,
+                    },
+                },
             },
            postcssLoader,
             {
@@ -139,7 +153,19 @@ const prodStyle = [
                     loader: "css-loader",       // 将 CSS 转化成 CommonJS 模块
                     options: {
                         minimize: true,
-                    }
+                        autoprefixer: {
+                            add: true,
+                            remove: true,
+                            browsers: ['last 2 versions'],
+                        },
+                        discardComments: {
+                            removeAll : true,
+                        },
+                        discardUnused: false,
+                        mergeIdents: false,
+                        reduceIdents: false,
+                        safe: true,
+                    },
                 },
                 postcssLoader,
                 {

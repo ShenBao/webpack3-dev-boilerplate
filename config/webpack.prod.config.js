@@ -102,12 +102,24 @@ const prodConfig = {
             // ignore  忽略拷贝指定的文件           可以用模糊匹配
             }
         ]),
-        new webpack.optimize.DedupePlugin(),
+        // new webpack.optimize.DedupePlugin(), // 警告已经被移除
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: true,
+                warnings: false,
+                screw_ie8: true,
+                conditionals: true,
+                unused: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true,
                 drop_console: true,
-                pure_funcs: ['console.log'],
+                pure_funcs: [
+                    'alert',
+                    'console.log'
+                ],
             },
             mangle: {
                 except: ['$super', '$', 'exports', 'require'],
@@ -115,7 +127,7 @@ const prodConfig = {
             output: {
                 comments: false,
             },
-            sourceMap: false,
+            sourceMap: true,
         }),
         // new webpack.optimize.OccurenceOrderPlugin(),
         // 公共代码分离打包
